@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+typedef long long ll;
+
+int main(){
+	ll a, b, n, gcd;
+	cin>>a>>b;
+	cin>>n;
+	
+	gcd = __gcd(a, b);
+	vector <ll> div;
+	for(ll i=1; i*i<=gcd; i++){
+		if(gcd%i==0){
+			if(i*i!=gcd){
+				div.push_back(i);
+				div.push_back(gcd/i);
+			}
+			else div.push_back(i);
+		}
+	}
+	sort(div.begin(), div.end());
+	//cout<<div[0]<<" "<<div[1]<<" "<<div[2]<<" "<<div[3];
+	
+	while(n--){
+		ll l, r;
+		cin>>l>>r;
+		ll lo, hi, mid, ans=-1;
+		lo=0; hi=div.size()-1;
+		while(lo<=hi){
+			mid = lo+ (hi-lo+1)/2;
+			if(div[mid]<=r){
+				ans=div[mid];
+				lo=mid+1;
+			}
+			else hi=mid-1;
+		}
+		//cout<<"ans"<<ans;
+		if(ans>=l) cout<<ans<<"\n";
+		else cout<<-1<<"\n";
+	}
+	return 0;
+}

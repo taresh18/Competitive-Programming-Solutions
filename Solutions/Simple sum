@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+	
+	ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+	
+	const long long N=1e6+5;
+	long long phi[N+1];
+	phi[0]=0; phi[1]=1;
+	for(long long i=2; i<=N; i++) phi[i] = i;
+	for(long long i=2; i<=N; i++){
+		if(phi[i]==i){
+			for(long long j=i; j<=N; j+=i) phi[j]-=phi[j]/i;
+		}
+	}
+	
+	
+	int t;
+	cin>>t;
+	while(t--){
+		long long n, sum=0;
+		cin>>n;
+		for(long long i=1; i*i<=n; i++){
+			if(n%i==0){
+				if(i*i==n) sum+= i*phi[i];
+			    else sum+= i*phi[i] + (n/i)*phi[n/i];
+			}
+						
+		}
+		cout<<sum<<"-->";
+		cout<<((sum+1)/2)*(n)<<"\n";
+	}
+	return 0;
+}

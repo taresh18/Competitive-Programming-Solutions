@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int64_t lcm(int a, int b, int c){
+	int p = a*b*c;
+	int g1 = __gcd(a, b);
+	int g2 = __gcd(b, c);
+	int g3 = __gcd(a, c);
+	int g = __gcd(c, g1);
+		
+	int64_t num = p*g;
+	int den = g1*g2*g3;
+	int64_t ans =  num/den;
+	return ans;
+}
+
+int main(){
+	long long n; int64_t ans;
+	cin>>n;
+	if(n==1) cout<<1;
+	else if(n==2)cout<<2;
+	else{
+		if(n%2!=0) ans=n*(n-1)*(n-2);
+		else{
+			if(n%3==0) ans=(n-1)*(n-2)*(n-3);
+			else ans=(n)*(n-1)*(n-3);
+		}
+		cout<<ans;
+	}
+	return 0;
+}

@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+	int T;
+	cin>>T;
+	while(T--){
+		long long N, orig, neew;
+		cin>>N;
+		long long arr[N];
+		for(long long i=0; i<N; i++) cin>>arr[i];
+		for(long long i=0; i<N; i++){
+			orig = arr[i];
+			neew = arr[arr[i]]%N;
+			arr[i] = N * neew + orig; 
+		}
+		for(long long i=0; i<N; i++) cout<<arr[i]/N<<" ";
+		cout<<endl;
+	}
+}

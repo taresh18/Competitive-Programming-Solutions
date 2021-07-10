@@ -1,0 +1,64 @@
+#include<bits/stdc++.h>
+#include <limits>
+using namespace std;
+typedef unsigned long long int ull;
+typedef long long int ll;
+typedef long double dll;
+#define f(i, n) for( ll i=0 ; i<n ; i++ )
+#define fa(i, a, b) for( ll i=a ; i<b ; i++ )
+#define pb push_back
+#define MOD 1000000007
+
+const ll MAX = 10000005;
+vector <bool> isPrime(MAX+1, true);
+
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+
+int main(){
+    faster();
+ 
+    int app[3005];   
+    memset(app, 0, sizeof(app));
+    int n, m;
+    cin>>n>>m;
+ 
+    for (int i = 1; i <= n; ++i) {
+        int a, b;
+        cin>>a>>b;
+        app[a] += b;
+    }
+
+    int sum = 0;
+    for (int i = 1; i <= 3001; ++i) {
+    	int left = m;
+ 
+        if (app[i - 1] >= left) {
+            sum += left;
+            app[i - 1] -= left;
+            left = 0;
+	    } 
+	    else if (app[i - 1]) {
+             left -= app[i - 1];
+             sum += app[i - 1];
+             app[i - 1] = 0;
+        }
+        if (left) {
+    		if (app[i] >= left) {
+    	       sum += left;
+               app[i] -= left;
+            }
+            else if (app[i]) {
+            	sum += app[i];
+                app[i] = 0;
+                left = 0;
+            }
+	   }
+    }
+ 
+    cout<<sum;
+    return 0;
+}

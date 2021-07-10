@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+long double pi=3.14159265358979323846264338327950;
+long double volume[10005];
+int N, F;
+
+bool check(long double vol){
+	int count=0;
+	if(vol==0) return false;
+	for(int i=0; i<N; i++) count+=floor(volume[i]/vol);
+	return count>=(F+1);
+}
+
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		cin>>N>>F;
+		for(int i=0; i<N; i++) cin>>volume[i];
+		long double ans=-1, eps=0.0001;
+		
+		sort(volume, volume+N);
+		for(int i=0; i<N; i++) volume[i]=pow(volume[i],2)*pi;
+		long double lo, hi, mid;
+		lo=0;
+		hi=volume[N-1];
+		while((hi-lo)>=eps){
+			mid = lo + (hi-lo)/2;
+			if(check(mid)){
+				ans=mid;
+				lo=mid;
+			}
+			else hi=mid;
+		}
+		printf("%.4Lf\n",ans);
+	}
+	return 0;
+}

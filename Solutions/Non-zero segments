@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+const int MAX=1000003;
+
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+
+int main(){
+	faster();
+	
+	ll n, sum=0, ans=0;
+	cin>>n;
+	set <ll> st;
+	st.insert(0);
+	for(ll i=0; i<n; i++){
+		ll num;
+		cin>>num;
+		sum += num;
+		if(st.count(sum)){
+			ans++;
+			st.clear();
+			st.insert(0);
+			st.insert(num);
+			sum = num;
+		}
+		else st.insert(sum);
+	}
+	cout<<ans;
+	
+	return 0;
+}

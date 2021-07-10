@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+#include <limits>
+using namespace std;
+typedef unsigned long long int ull;
+typedef long long int ll;
+typedef long double dll;
+#define f(i, n) for( ll i=0 ; i<n ; i++ )
+#define fa(i, a, b) for( ll i=a ; i<b ; i++ )
+#define pb push_back
+#define MOD 1000000007
+
+const ll MAX = 10000005;
+vector <bool> isPrime(MAX+1, true);
+
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+
+int main(){
+	int a, b, c, count=0;
+	cin>>a>>b>>c;
+	vector <ll> ans;
+	for(int s=1; s<81; s++){
+		int sum=0;
+		ll x = (b * pow(s, a)) + c;
+		if(x<1000000000){
+			ll temp = x;
+			while(temp>0){
+				sum += temp%10;
+				temp = temp / 10;
+		    }
+			if(sum==s){
+				count++;
+				ans.pb(x);
+		    }
+	    }
+	}
+	cout<<count<<"\n";
+	if(count>0){
+		for(auto i=ans.begin(); i!=ans.end(); i++){
+			cout<<*i<<" ";
+		}
+	}
+}

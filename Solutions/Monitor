@@ -1,0 +1,15 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+typedef long long ll;
+
+int main(){
+	ll a, b, x, y, k1, k2, k, gcd;
+	cin>>a>>b>>x>>y;
+	gcd= __gcd(x, y);
+	x=x/gcd; y=y/gcd;
+	k1=a/x; k2=b/y;
+	k=min(k1, k2);
+	cout<<k*x<<" "<<k*y;
+	return 0;
+}

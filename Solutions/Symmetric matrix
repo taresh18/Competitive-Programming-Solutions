@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+	
+typedef long long ll;
+typedef long double ld;
+
+void faster(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+}
+
+int main(){
+	faster();
+	
+	int t;
+	cin>>t;
+	while(t--){
+		ll n;
+		cin>>n;
+		ld a;
+		a = (sqrt(8*n + 17)-3)/2; 
+		
+		if(a-floor(a)==0){
+			cout<<2 * a;
+		}
+		else cout<<2 * floor(a)+1;
+		
+		cout<<endl;
+	}
+	return 0;
+}

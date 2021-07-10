@@ -1,0 +1,13 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+typedef long long ll;
+
+int main(){
+	ll n, k, ans, a;
+	cin>>n>>k;
+	a=sqrt(8*(n+k) + 9);
+	ans= (2*n + 3 - a)/2;
+	cout<<ans;
+	return 0;
+}

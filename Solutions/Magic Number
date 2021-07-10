@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+char a[100];
+int main(){
+	cin>>a;
+	int len = strlen(a);
+	int flag = 0;
+	for(int i = 0 ; i < len ; i ++){
+		if(a[i] == '1'){
+			flag = 0;
+			continue;
+		}
+		else if(a[i] == '4' && a[i-1] == '1' && len >= 2){
+			flag = 0;
+			continue;
+		}
+		else if(a[i] == '4' && a[i-1] == '4' && a[i-2] == '1' && len >=3){
+			flag = 0;
+			continue;
+		}
+		else {
+			flag = 1;
+			break;
+		}
+	}
+	if(flag) cout << "NO" << endl;
+	else cout << "YES" << endl;
+}

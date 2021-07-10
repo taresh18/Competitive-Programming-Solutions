@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+#include <limits>
+using namespace std;
+typedef unsigned long long int ull;
+typedef long long int ll;
+#define f(i, n) for( ll i=0 ; i<n ; i++ )
+#define fa(i, a, b) for( ll i=a ; i<b ; i++ )
+#define pb push_back
+#define MOD 1000000007
+
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+
+int main(){
+	faster();
+	
+	ll t, sx, sy, ex, ey;
+	cin>>t>>sx>>sy>>ex>>ey;
+	string s;
+	cin>>s;
+	int count[4], ans=0;
+	count[0] = ey - sy;
+	count[1] = sy - ey;
+	count[2] = ex - sx;
+	count[3] = sx - ex;
+	f(i, 4){
+		if(count[i]<0) count[i]=0;
+	}
+	f(i, t){
+		if(s[i]=='N' && count[0]>0) count[0]--; 
+		if(s[i]=='S' && count[1]>0) count[1]--; 
+		if(s[i]=='E' && count[2]>0) count[2]--; 
+		if(s[i]=='W' && count[3]>0) count[3]--;
+		ans++;
+		if(count[0]==0 && count[1]==0 && count[2]==0 && count[3]==0){
+			break;
+		}; 
+	}
+	if(count[0]==0 && count[1]==0 && count[2]==0 && count[3]==0) cout<<ans;
+	else cout<<-1;
+	
+}

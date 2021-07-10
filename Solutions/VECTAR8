@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+	
+	const int max_N = 1e6+10;
+	vector <bool> isPrime(max_N+1, true);
+	vector <int> result(max_N+1, 0);      //for each index i, stores the total such num <= i
+	
+	isPrime[0] = false; isPrime[1] = false;
+	for(int i=2; i*i<=max_N; i++){
+		if(isPrime[i]){
+			for(int j=i*i; j<=max_N; j+=i) isPrime[j] = false;
+		}
+	}
+	for(int i=2; i<max_N; i++){
+		result[i] += result[i-1];
+		
+		if(isPrime[i]){
+			if(i<10) result[i]++;
+			
+			else{
+				string i_str;
+				i_str = to_string(i);
+				for(auto j=i_str.begin(); j!=i_str.end(); j++){
+					if(*j=='0') continue;
+		        }
+		    int num = i, flag=1;
+		    string num_str;
+		    while(num>10){
+		    	num_str = to_string(num);
+		    	num_str.erase(num_str.begin());
+		    	num = stoi(num_str);
+		    	if(isPrime[num] = false){
+		    		flag = 0;
+		    		break;
+		    	}
+		    }
+		    if(flag==1) result[i]++;
+	        }
+        }
+    }
+    int num_test;
+    cin>>num_test;
+    for(int t=0; t<num_test; t++){
+    	int N;
+    	cin>>N;
+    	cout<<result[N]<<"\n";
+    }
+    return 0;
+}

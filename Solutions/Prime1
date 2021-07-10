@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+const long long two = 2;
+int main(){
+	int num_test;
+	cin>>num_test;
+	for(int i=0; i<num_test; i++){
+		long long r, l;
+		cin>>l>>r;
+		vector <bool> isPrime(r-l+1, true);
+		
+		for(long long j=2; j*j<=r; j++){
+			for(long long k=max(j*j, (l+j-1)/j * j); k<=r; k+=j) isPrime[k-l] = false;
+		}
+		
+		for(int j=max(l, two); j<=r; j++){
+			if(isPrime[j-l]) cout<<j<<"\n";
+		}
+		cout<<endl;
+	}
+	return 0;
+}

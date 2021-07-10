@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		long long a, b;
+		cin>>a>>b;
+		int res=1;
+		while(b){
+			if(b%2==1){
+				res*=a;
+				res%=10;
+			}
+			a*=a;
+			a%=10;
+			b/=2;
+		}
+		cout<<res<<"\n";
+	}
+}

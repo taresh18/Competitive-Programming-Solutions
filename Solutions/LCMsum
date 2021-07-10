@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+
+const long long N=50000100;
+long long phi[N+1];
+long long sum[N];
+
+int main(){	
+	phi[0]=0; phi[1]=1;
+	for(long long i=2; i<=N; i++) phi[i] = i;
+	for(long long i=2; i<=N; i++){
+		if(phi[i]==i){
+			for(int j=i; j<=N; j+=i) phi[j]-=phi[j]/i;
+		}
+	}
+	for(long long i=1; i<=N; i++){
+		for(int j=i; j<=N; j+=i) sum[j]+= i*phi[i];
+	}
+	
+	
+	
+	int t;
+	scanf ( "%d", &t );
+	while(t--){
+		long long n;
+		scanf ( "%lld", &n );
+		//cout<<sum<<"-->";
+		
+		//ans = ((sum[n]+1)/2)*(n);
+		printf ( "%lld\n", sum[n] );
+	}
+	return 0;
+}

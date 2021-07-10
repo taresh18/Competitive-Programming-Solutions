@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+#include <limits>
+using namespace std;
+typedef unsigned long long int ull;
+typedef long long int ll;
+typedef long double ld;
+#define f(i, n) for (ll i = 0 ; i < n ; i++)
+#define fa(i, a, b) for (ll i = a; i < b; i++)
+#define pb push_back
+#define MOD 1000000007
+
+const ll MAX = 10000005;
+vector <bool> isPrime (MAX+1, true);
+
+void faster() {
+	ios_base::sync_with_stdio (false);
+	cin.tie (NULL);
+	cout.tie (NULL);
+}
+
+int main() {
+	faster();
+	int t;
+	cin >> t;
+	while(t--) {
+		int n, m;
+		cin >> n >> m;
+		ll sum = 0, ans = 0, arr[n][m];
+		f(i, n) {
+			f(j, m) {
+				cin >> arr[i][j];
+				sum += arr[i][j];
+			}
+		}
+		ll mean = sum / (n * m);
+		f(i, n) {
+			f(j, m) {
+				ans += abs(arr[i][j] - mean);
+			}
+		}
+		cout << ans << '\n';
+	}
+}

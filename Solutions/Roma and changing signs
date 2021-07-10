@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+#include <limits>
+using namespace std;
+typedef unsigned long long int ull;
+typedef long long int ll;
+#define f(i, n) for( ll i=0 ; i<n ; i++ )
+#define fa(i, a, b) for( ll i=a ; i<b ; i++ )
+#define pb push_back
+#define MOD 1000000007
+
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+
+int main(){
+	faster();
+	
+	int n, k, mini=999999, sum=0, temp;
+	cin>>n>>k;
+	int arr[n];
+	f(i, n) cin>>arr[i];
+	f(i, n){
+		if(arr[i]>0) break;
+		//temp=k;
+		k--;
+		if(k<0) break;
+		arr[i] = - arr[i];
+	}
+	f(i, n){
+		sum += arr[i];
+		mini = min(mini, arr[i]);
+	}
+	if(k%2!=0 && k>0){
+		sum -= 2 * mini;
+	}
+	cout<<sum;
+	
+}

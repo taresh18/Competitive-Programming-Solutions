@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+	
+	int num_test;
+	cin>>num_test;
+	
+	for(int i=0; i<num_test; i++){
+		long long N, K;
+		int num_N=0; int num_K=0;
+		cin>>N>>K;
+		for(int num=4; num<=N; num++){
+		    if(sqrt(num)==floor(sqrt(num))){
+		    	int sq_num;
+			    sq_num = sqrt(num);
+			    int flag=0;
+			    for(int j=2; j*j<=sq_num; j++){
+				    if(fmod(sq_num, j)==0){
+					    flag = 1;
+					    break;
+				    }
+			    }
+			    if(flag==0){
+				    num_N++;
+				    if(num>K) num_K++;
+			    }
+		    }
+		}
+		cout<<num_N<<" "<<num_K<<"\n";
+	}
+	return 0;
+}

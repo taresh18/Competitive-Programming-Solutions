@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+	
+	long long n, num;
+	vector <long long> numbers;
+	vector <string> result;
+	cin>>n;
+	for(long long i=0; i<n; i++){
+		cin>>num;
+		numbers.push_back(num);
+	}
+	for(auto i=numbers.begin(); i!=numbers.end(); ++i){
+		if(sqrt(*i)==floor(sqrt(*i))){
+			int flag = 0;
+			for(int j=2; j*j<=sqrt(*i); j++){
+				if(fmod(sqrt(*i),j) == 0) flag = 1;
+			}
+			if(flag==0 && *i!=1) result.push_back("YES");
+			else result.push_back("NO");
+		}
+		else result.push_back("NO");
+	}
+	for(auto i=result.begin(); i!=result.end(); ++i) cout<<*i<<"\n";
+	return 0;
+}

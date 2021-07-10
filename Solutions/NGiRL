@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+const int max_N = 1e6+5;
+int main(){
+	vector <bool> isPrime(max_N, true);
+	vector <long long> Tprimes;
+	
+	isPrime[0] = false; isPrime[1] = false;
+	for(int i=2; i*i<max_N; i++){
+		if(isPrime[i]){
+			for(int j=i*i; j<=max_N; j+=i) isPrime[j] = false;
+		}
+	}
+	for(int i=2; i<=max_N; i++){
+		if(isPrime[i]) Tprimes.push_back(i*i);
+	}
+	int num_test;
+	cin>>num_test;
+	while(num_test--){
+		long long N, K;
+		int num_N, num_K;
+		cin>>N>>K;
+		vector<long long>::iterator it1, it2;
+		it1 = upper_bound(Tprimes.begin(), Tprimes.end(), N);
+		it2 = upper_bound(Tprimes.begin(), Tprimes.end(), K);
+		num_N = it1 - Tprimes.begin();
+		num_K = it2 - Tprimes.begin();
+		if(K<N) cout<<num_N<<" "<<num_N - num_K<<"\n";
+		else cout<<num_N<<" "<<"0"<<"\n";
+	}
+	
+	return 0;
+}

@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+typedef long long ll;
+//ll length[2005];
+int N;
+
+
+
+int main(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+	
+	while(true){
+		cin>>N;
+		
+		if(N==0) break;
+		ll length[N];
+		for(int i=0; i<N; i++) cin>>length[i];
+		int count=0, sum=0, upper;
+		sort(length, length+N);
+		for(int i=0; i<N-2; i++){
+			for(int j=i+1; j<N-1; j++){
+				sum = length[i]+length[j];
+				upper = upper_bound(length+j+1,length+N,sum)-length;
+				count+=N-upper;
+			}
+		}
+		cout<<count<<"\n";
+	}
+	return 0;
+}

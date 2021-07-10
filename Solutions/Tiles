@@ -1,0 +1,60 @@
+#include<bits/stdc++.h>
+#include <limits>
+using namespace std;
+typedef unsigned long long int ull;
+typedef long long int ll;
+typedef long double dll;
+#define f(i, n) for( ll i=0 ; i<n ; i++ )
+#define fa(i, a, b) for( ll i=a ; i<b ; i++ )
+#define pb push_back
+#define MOD 998244353
+
+//const ll MAX = 10000005;
+//vector <bool> isPrime(MAX+1, true);
+
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+
+ll expo(ll a, ll b, ll c = MOD) {
+	ll ans = 1;
+	while(b != 0) {
+		if(b % 2 == 1) {
+			ans *= a;
+			ans %= c;
+		}
+		a = a * a;
+		a %= c;
+		b /= 2;
+	}
+	return ans;
+}
+
+int main() {
+	faster();
+	
+	ll n, w;
+	cin >> n >> w;
+	ll arr[n], sum = 0, max = -999999, min = 999999;
+	f(i, n) {
+		cin >> arr[i];
+		sum += arr[i];
+		if(sum < min) min = sum;
+		if(sum > max) max = sum;
+	
+	}
+	ll ans = w - max;
+	if (ans > w) ans = ans - (ans - w);
+	ans = ans + 1;
+	if(min < 0) {
+		ans = ans - abs(min);
+	}
+	if(max > w || min < (-1 * w) || ans > (w + 1) || ans < 0) {
+		cout << 0;
+	}
+	else {
+		cout << ans;
+	}
+}

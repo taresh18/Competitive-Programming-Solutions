@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define toggle(x) (x = !x)
+
+int main()
+{
+    vector <vector <int> > light_on(5, vector <int>(5, true));
+
+    for(int row = 1; row <= 3; row++)
+    {
+        for(int column = 1; column <= 3; column++)
+        {
+            int num_toggles;
+            cin>>num_toggles;
+
+            if(num_toggles%2 == 1)
+            {
+                toggle(light_on[row][column]);
+
+                toggle(light_on[row][column - 1]);
+                toggle(light_on[row][column + 1]);
+                toggle(light_on[row + 1][column]);
+                toggle(light_on[row - 1][column]);
+            }
+        }
+    }
+
+    for(int row = 1; row <= 3; row++)
+    {
+        for(int column = 1; column <= 3; column++)
+        {
+            if(light_on[row][column])
+                cout<<"1";
+            else
+                cout<<"0";
+        }
+        cout<<"\n";
+    }
+    return 0;
+}
