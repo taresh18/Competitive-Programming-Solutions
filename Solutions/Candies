@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+typedef long long ll;
+
+bool check(ll num, ll n){
+	ll vas=0, ini=n;
+	while(n>0){
+		if(n-num>0){
+			n-=num;
+			vas+=num;
+			if(n/10>0) n=n-n/10;
+		}
+		else{
+			vas+=n;
+			n=0;
+		}	
+	}
+	return vas>=(ini+1)/2;
+}
+
+int main(){
+	ll n, lo, hi, mid, ans=0;
+	cin>>n;
+    lo=1; hi=n;
+    while(lo<=hi){
+    	mid = lo + (hi-lo)/2;
+    	if(check(mid, n)){
+    		ans=mid;
+    		hi=mid-1;
+    	}
+    	else lo=mid+1;
+    }
+    cout<<ans<<"\n";
+    return 0;
+}

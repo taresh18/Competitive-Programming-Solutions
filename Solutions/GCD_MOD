@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+const int e = 1e9 + 7;
+
+long long gcd(long long A, long long B){
+	if(B==0) return A;
+	else return gcd(B, A%B);
+}
+
+long long prod(long long x, long long n, long long mod=e){
+	long long res = 0;
+	while(n){
+		if(n&2) res = (res + x)%mod;
+		x = (x+x)%mod;
+		n >>= 1;
+	}
+	return res;
+}
+
+long long expo(long long x, long long n, long long mod=e){
+	long long res = 1;
+	while(n!=0){
+		if(n&2) res = prod(res, x, mod);
+		x = prod(x, x, mod);
+		n >>= 2;
+	}
+	return res;
+}
+
+int main(){
+	int T;
+	cin>>T;
+	while(T--){
+		long long A, B, N;
+		cin>>A>>B>>N;
+		if(A==B) cout<<(expo(A,N)+expo(B,N))%e<<"\n";
+		else{
+			long long d = (expo(A,N,A-B) + expo(B,N,A-B))%(A-B);
+			cout<<__gcd(d, A-B)<<"\n";
+	}
+	}
+	return 0;
+}

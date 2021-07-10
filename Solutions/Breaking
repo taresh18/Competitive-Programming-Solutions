@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+	
+    int num_test, N;
+    cin>>num_test;
+    for(int j=1; j<=num_test; j++){
+    	cin>>N;
+    	set <int> factors;
+    	for(int i=2; i*i<=N; i++){
+			while(N%i==0){
+				factors.emplace(i);
+				N /= i;
+	        }
+        }
+        if(N!=1) factors.emplace(N);
+        cout<<"Case "<<j<<": ";
+        for(auto i=factors.begin(); i!=factors.end(); ++i) cout<<*i<<" ";
+        cout<<endl;
+    }
+    return 0;
+}

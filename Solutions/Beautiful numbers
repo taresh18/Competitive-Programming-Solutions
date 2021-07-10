@@ -1,0 +1,80 @@
+#include<bits/stdc++.h>
+#include <limits>
+using namespace std;
+typedef unsigned long long int ull;
+typedef long long int ll;
+typedef long double dll;
+#define f(i, n) for( ll i=0 ; i<n ; i++ )
+#define fa(i, a, b) for( ll i=a ; i<b ; i++ )
+#define pb push_back
+const ll MOD = 1000000007;
+ 
+ll factorial[1000006];
+ 
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+
+void factmod() {
+	factorial[0] = 1;
+	for(ll i = 1; i <= 1000005; i++) {
+		factorial[i] = factorial[i - 1] * i;
+		factorial[i] %= MOD;
+	}
+}
+ 
+ll expo(ll a, ll b, ll c = MOD) {
+	ll ans = 1;
+	while(b != 0) {
+		if(b % 2 == 1) {
+			ans *= a;
+			ans %= c;
+		}
+		a = a * a;
+		a %= c;
+		b /= 2;
+	}
+	return ans;
+}
+  
+ll nCrmod(ll n, ll r, ll MOD = MOD) {
+	ll temp = factorial[r] * factorial[n - r];
+	temp %= MOD;
+	temp = expo(temp, MOD - 2);
+	ll ans = factorial[n] * temp;
+	ans %= MOD;
+	return ans;
+} 
+
+bool isgood(ll sum, int a, int b) {
+	int flag = 1;
+	while(sum > 0) {
+		int dig = sum % 10;
+		if(dig == a || dig == b) 
+			sum /= 10;
+		else {
+			flag = 0;	
+			break;
+		}
+	}
+	return (flag==1);
+}
+ 
+int main() {
+	faster();
+	factmod();
+	int a, b;
+	ll n, ans = 0;
+	cin >> a >> b >> n;
+	f(i, n+1) {
+		ll sum = (n - i) * a + i * b;
+		if(isgood(sum, a, b)) {
+			ans += nCrmod(n, i);
+			ans %= MOD;
+		}
+	}
+	cout << ans;
+	
+}

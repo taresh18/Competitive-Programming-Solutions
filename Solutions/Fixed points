@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+#include <limits>
+using namespace std;
+typedef unsigned long long int ull;
+typedef long long int ll;
+typedef long double dll;
+#define f(i, n) for( ll i=0 ; i<n ; i++ )
+#define fa(i, a, b) for( ll i=a ; i<b ; i++ )
+#define pb push_back
+#define MOD 1000000007
+
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+
+int main(){
+	faster();
+	
+	int n;
+    cin >> n;
+    int arr[n], count=0, flag=0;
+    f(i, n){
+        cin >> arr[i];
+        if (arr[i] == i) count++;
+    }
+    f(i, n){
+    	//if (arr[i]==i) count++;
+        if (arr[i] != i) {
+            if (arr[arr[i]] == i) {
+                count += 2;
+                flag = 1;
+                break;
+            }
+        }
+    }
+    if (flag == 0 && count!=n) count++;
+    cout << count << endl;
+    return 0;
+}

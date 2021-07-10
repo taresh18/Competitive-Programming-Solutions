@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+	
+	const int max_p = 3e4+5;
+	
+	vector <bool> isPrime(max_p, true);
+	vector <long long> prime;
+	vector <long long> result;
+	isPrime[0] = false; isPrime[1] = false;
+	for(int i=2; i*i<max_p; i++){
+		if(isPrime[i]){
+			for(int j=i*i; j<=max_p; j+=i) isPrime[j]=false;
+		}
+	}
+	for(int i=2; i<=max_p; i++){
+		if(isPrime[i]) prime.push_back(i);
+	}
+	for(auto i=prime.begin(); i!=prime.end(); i++){
+		for(auto j=i+1; j!=prime.end(); j++){
+			result.push_back((*i) * (*j));
+		}
+	}
+	sort(result.begin(), result.end());
+	
+	int num_test;
+	cin>>num_test;
+	for(int i=0; i<num_test; i++){
+		int k;
+		cin>>k;
+		cout<<result[k-1]<<"\n";
+	}	
+	return 0;
+	
+}

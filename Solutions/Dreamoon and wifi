@@ -1,0 +1,60 @@
+#include<bits/stdc++.h>
+#include <limits>
+using namespace std;
+typedef unsigned long long int ull;
+typedef long long int ll;
+typedef long double dll;
+#define f(i, n) for( ll i=0 ; i<n ; i++ )
+#define fa(i, a, b) for( ll i=a ; i<b ; i++ )
+#define pb push_back
+#define MOD 1000000007
+
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+
+dll ncr(int n, int r){
+	ll a=1, b=1, c=1;
+	f(i, n) a*=(i+1);
+	f(i, r) b*=(i+1);
+	f(i, n-r) c*=(i+1);
+	dll ans = a / (b*c);
+	return ans;
+}
+
+int main(){
+	faster();
+	
+	string s1, s2;
+	cin>>s1;
+	cin>>s2;
+	int sum1=0, sum2=0, req_sum, step=0;
+	dll ans;
+	int n=s1.length();
+	f(i, n){
+		if(s1[i]=='+') sum1++;
+		if(s1[i]=='-') sum1--;
+	}
+	f(i, n){
+		if(s2[i]=='+') sum2++;
+		if(s2[i]=='-') sum2--;
+		if(s2[i]=='?') step++;
+	}
+	req_sum = sum1 - sum2;
+	if((abs(req_sum) > step) || (abs(req_sum)%2==0 && step%2!=0) || (abs(req_sum)%2!=0 && step%2==0)) ans=0;
+	else{
+		if(step%2==0){
+			dll num = ncr(step, (step- abs(req_sum))/2);
+			dll den = pow(2, step);
+			ans = num / den;
+		}
+		else{
+			dll num = ncr(step, (step- abs(req_sum))/2);
+			dll den = pow(2, step);
+			ans = num / den;
+		}
+	}
+	printf("%.12f", float(ans));
+}

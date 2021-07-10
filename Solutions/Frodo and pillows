@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+typedef long long ll;
+ll n, m, k;
+
+ll num_pillows_one_side(ll y, ll x){
+	ll num;
+	if(y>x-1) num = (x*(x-1))/2;
+	else num = y*x - (y*(y+1))/2;
+	return num;
+}
+
+bool check(ll mid){
+	ll total_pillows_req;
+	total_pillows_req=num_pillows_one_side(n-k, mid)+num_pillows_one_side(k-1, mid)+mid;
+	return total_pillows_req<=m-n;
+}
+
+int main(){
+	cin>>n>>m>>k;
+	ll lo, hi, mid, ans=0;
+	lo = 1; hi = m-n;
+	while(lo<=hi){
+		mid = lo+(hi-lo+1)/2;
+		if(check(mid)){
+			ans=mid;
+			lo=mid+1;
+		}
+		else hi=mid-1;
+	}
+	cout<<ans+1;
+	return 0;
+}

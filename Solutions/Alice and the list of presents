@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+const ll MAX=1000000007;
+
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+
+ll mod(ll a, ll b, ll mod=MAX){
+	ll ans=1;
+	while(b!=0){
+		if(b%2==1){
+			ans *= a;
+			ans %= mod;
+		}
+		a = a*a;
+		a %= mod;
+		b /= 2;
+	}
+	return ans;
+}
+
+int main(){
+	faster();
+	
+	ll n, m, res;
+	cin>>n>>m;
+	res = mod((mod(2, m) - 1), n);
+	cout<<res % MAX;
+	return 0;
+}

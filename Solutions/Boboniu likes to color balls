@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+typedef long long ll;
+
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		ll r, g, b, w;
+		cin>>r>>g>>b>>w;
+		ll n=r+g+b+w;
+		if(n%2==0){
+			if(r%2==0 && g%2==0 && b%2==0 && w%2==0) cout<<"Yes";
+			else if(r%2!=0 && g%2!=0 && b%2!=0 && w%2!=0) cout<<"Yes";
+			else cout<<"No";
+		}
+		else{
+			if(r%2==0 && g%2==0 && b%2==0 && w%2!=0) cout<<"Yes";
+			else if(r%2==0 && g%2==0 && w%2==0 && b%2!=0) cout<<"Yes";
+			else if(r%2==0 && w%2==0 && b%2==0 && g%2!=0) cout<<"Yes";
+			else if(w%2==0 && g%2==0 && b%2==0 && r%2!=0) cout<<"Yes";
+			else if(r!=0 && g!=0 && b!=0){
+				if(r%2!=0 && g%2!=0 && b%2!=0 && w%2==0) cout<<"Yes";
+				else if(r%2!=0 && g%2!=0 && w%2!=0 && b%2==0) cout<<"Yes";
+				else if(r%2!=0 && w%2!=0 && b%2!=0 && g%2==0) cout<<"Yes";
+				else if(w%2!=0 && g%2!=0 && b%2!=0 && r%2==0) cout<<"Yes";
+				else cout<<"No";
+			}
+			else cout<<"No";
+		}
+		cout<<endl;
+	}
+	return 0;
+}

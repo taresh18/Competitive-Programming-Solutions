@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+#include <limits>
+using namespace std;
+typedef unsigned long long int ull;
+typedef long long int ll;
+typedef long double dll;
+#define f(i, n) for( ll i=0 ; i<n ; i++ )
+#define fa(i, a, b) for( ll i=a ; i<b ; i++ )
+#define pb push_back
+#define MOD 1000000007
+
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+
+int main(){
+    string s1, s2, a[2], b[2];
+    int l1, l2, cnt=0, j=0;
+    cin>>s1>>s2;
+    l1 = s1.length();
+    l2 = s2.length();
+    if(l1!=l2){
+        cout<<"NO"<<endl;
+        return 0;
+    }
+    else{
+        for(int i=0; i<l1; i++){
+            if(s1[i] != s2[i]){
+                cnt++;
+                a[j] = s1[i];
+                b[j] = s2[i];
+                j++;
+                if(cnt>2){
+                   cout<<"NO"<<endl;
+                   return 0;
+                }
+            }
+        }
+    }
+    if(a[1]==b[0] && a[0]==b[1]) cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;
+
+    return 0;
+}

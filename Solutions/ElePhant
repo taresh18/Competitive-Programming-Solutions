@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+ 
+using namespace std;
+ 
+int main(){
+	int x, count=0;
+	cin>>x;
+	while(x/5!=0){
+		x=x-5;
+		count++;
+	}
+	while(x/4!=0){
+		x=x-4;
+		count++;
+	}
+	while(x/3!=0){
+		x=x-3;
+		count++;
+	}
+	while(x/2!=0){
+		x=x-2;
+		count++;
+	}
+	if(x==1) count++;
+	cout<<count;
+	return 0;
+	
+}

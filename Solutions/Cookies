@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+const int MAX=1000003;
+ll larPrime[MAX];
+
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+
+int main(){
+	faster();
+	
+    int n, a, odd=0, even=0;
+    cin >> n;
+    while (n--)
+    {
+        cin >> a;
+        if (a % 2 == 0)
+        {
+            even += 1;
+        }
+        else
+        {
+            odd += 1;
+        }
+    }
+	if(odd%2==1) cout<<odd;
+	else cout<<even;
+    cout<<endl;
+    return 0;
+}

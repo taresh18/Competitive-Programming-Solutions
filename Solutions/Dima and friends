@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    int n;
+    cin>>n;
+
+    int other_fingers = 0;
+    for(int i = 1; i <= n; i++)
+    {
+        int finger;
+        cin>>finger;
+        other_fingers += finger;
+    }
+
+    int ans = 0, no_of_people = n + 1;
+
+    for(int i = 1; i <= 5; i++)
+    {
+        int total_fingers = other_fingers + i;
+        ans += (total_fingers%no_of_people != 1);
+    }
+
+    cout<<ans;
+    return 0;
+}

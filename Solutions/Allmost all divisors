@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+	
+	long long num_test;
+	cin>>num_test;
+	
+	for(long long i=1; i<=num_test; i++){
+		long long n, req_num, num;
+		cin>>n;
+		vector <long long> divisors; 
+		vector <long long> div_real;
+		
+		for(long long j=0; j<n; j++){
+			cin>>num;
+			divisors.push_back(num);
+		}
+		sort(divisors.begin(), divisors.end());
+		req_num = divisors[0] * divisors[n-1];
+		
+		for(long long j=2; j*j<=req_num; j++){
+			if(req_num%j == 0){
+				div_real.push_back(j);
+				if(j!=(req_num/j)) div_real.push_back(req_num/j);
+			}
+		}
+		sort(div_real.begin(), div_real.end());
+		if(divisors == div_real) cout<<req_num<<"\n";
+		else cout<<"-1"<<"\n";
+	}
+return 0;
+}

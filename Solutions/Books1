@@ -1,0 +1,70 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+typedef long long ll;
+ll pages[505];
+int k, m;
+
+bool check(ll mid){
+	int p=1; ll sum=0;
+	for(int i=m; i>0; i--){
+		if(sum + pages[i] <= mid) sum+=pages[i];
+		else{
+			sum=pages[i];
+			p++;
+		}
+	}
+	return p<=k;
+}
+
+void print(ll ans){
+	vector<int>v;
+	int placed = 1;
+	ll s=0;
+	for(int i=m; i>=1; i--){
+		if(s + pages[i] <= ans && i>(k-placed)){
+			s += pages[i];
+			v.push_back(pages[i]);
+		}
+		else{
+			s = pages[i];
+			placed++;
+			v.push_back(-1);
+			v.push_back(pages[i]);
+		}
+	}
+	reverse(v.begin(), v.end());
+    int sz=v.size();
+	for(int i=0 ; i < sz ; i++){
+		if(v[i]==-1) cout<<"/ ";
+		else cout<<v[i]<<" ";
+	}
+	cout<<endl;
+}
+
+int main(){
+	int N;
+	cin>>N;
+	while(N--){
+		cin>>m>>k;
+		ll totalp=0, max=0;
+		for(int i=1; i<=m; i++){
+			cin>>pages[i];
+			if(pages[i]>max) max=pages[i];
+			totalp+=pages[i];
+		}
+		ll lo, hi, mid, ans;
+		lo=max; hi=totalp;
+		while(lo<hi){
+			mid = lo+(hi-lo)/2;
+			if(check(mid)){
+				ans=mid;
+				hi=mid;
+			}
+			else lo=mid+1;
+		}
+		//cout<<ans<<endl;
+		print(ans);
+	}
+	return 0;
+}

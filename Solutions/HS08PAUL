@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+	const int max_n = 1e7+5;
+	vector <bool> isPrime(max_n, true);
+	vector <bool> prime(max_n, false);
+	isPrime[0] = false; isPrime[1] = false;
+	for(int i=2; i*i<=max_n; i++){
+		if(isPrime[i]){
+			for(int j=i*i; j<=max_n; j+=i) isPrime[j] = false;
+		}
+	}
+	long long num;
+	for(long long i=1; i*i<=max_n; i++){
+		for(long long j=1; j*j*j*j<=max_n; j++){
+			num = i*i + j*j*j*j;
+			if(num<max_n){
+				if(isPrime[num]) prime[num] = true;
+			}
+		}
+	}
+	vector <long long> result(max_n, 0);
+	for(long long i=2; i<=max_n; i++){
+		result[i] += result[i-1];
+		if(prime[i]) result[i]++;
+	}
+	long long num_test, n;
+	cin>>num_test;
+	for(long i=0; i<num_test; i++){
+		cin>>n;
+		cout<<result[n]<<"\n";
+		
+	}
+}

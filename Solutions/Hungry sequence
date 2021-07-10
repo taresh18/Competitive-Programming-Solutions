@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+#include <limits>
+using namespace std;
+typedef unsigned long long int ull;
+typedef long long int ll;
+typedef long double dll;
+#define f(i, n) for( ll i=0 ; i<n ; i++ )
+#define fa(i, a, b) for( ll i=a ; i<b ; i++ )
+#define pb push_back
+#define MOD 1000000007
+
+const ll MAX = 10000005;
+vector <bool> isPrime(MAX+1, true);
+
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+
+void sieve(){
+	isPrime[0] = false; isPrime[1] = false;
+	for(ll i=2; i*i<=MAX; i++){
+		if(isPrime[i]){
+			for(ll j=i*i; j<=MAX; j+=i){
+				isPrime[j] = false;
+			}
+		}
+	}
+}
+
+
+int main(){
+	faster();
+	sieve();
+	ll n, count=0;
+	cin>>n;
+	for(ll i=2; i<MAX; i++){
+		if(isPrime[i]){
+			cout<<i<<" ";
+			count++;
+		}
+	    if(count>=n) break;
+	}
+}

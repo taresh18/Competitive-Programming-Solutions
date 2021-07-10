@@ -1,0 +1,60 @@
+#include<bits/stdc++.h>
+#include <limits>
+using namespace std;
+typedef unsigned long long int ull;
+typedef long long int ll;
+typedef long double dll;
+#define f(i, n) for( ll i=0 ; i<n ; i++ )
+#define fa(i, a, b) for( ll i=a ; i<b ; i++ )
+#define pb push_back
+#define MOD 998244353
+
+//const ll MAX = 10000005;
+//vector <bool> isPrime(MAX+1, true);
+
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+
+ll expo(ll a, ll b, ll c = MOD) {
+	ll ans = 1;
+	while(b != 0) {
+		if(b % 2 == 1) {
+			ans *= a;
+			ans %= c;
+		}
+		a = a * a;
+		a %= c;
+		b /= 2;
+	}
+	return ans;
+}
+
+ll nCr(ll n, ll r) {
+	ll p = 1, k = 1;
+	if(n - r < r)
+		r = n - r;
+	if(r != 0) {
+		while(r) {
+			p *= n;
+			k *= r;
+			ll g = __gcd(p, k);
+			p /= g;
+			k /= g;
+			n--;
+			r--;
+		}
+	}
+	else
+		p = 1;
+	return p;
+}
+
+int main() {
+	int n;
+	cin >> n;
+	ll ans = nCr((n + 4), 5) * nCr((n + 2), 3);
+	cout << ans;
+}

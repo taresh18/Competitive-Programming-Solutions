@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+	int n, m, k;
+	cin>>n>>m>>k;
+	int s[k][2], f[k][2];
+	for(int i=1; i<=k; i++){
+		for(int j=1; j<=2; j++) cin>>s[i][j];	
+	}
+	for(int i=1; i<=k; i++){
+		for(int j=1; j<=2; j++) cin>>f[i][j];	
+	}
+	cout<<n*m + m + n -3<<"\n";
+	for(int i=1; i<=n-1; i++) cout<<"U";
+	for(int i=1; i<=m-1; i++) cout<<"L";
+	for(int i=1; i<=n; i++){
+		if(i%2==0){
+			for(int i=1; i<=m-1; i++) cout<<"L";
+		}
+		else{
+			for(int i=1; i<=m-1; i++) cout<<"R";
+		}
+		if(i!=n)cout<<"D";
+	}
+	return 0;
+}

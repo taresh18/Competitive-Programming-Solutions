@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+	int N, flag=0;
+	cin>>N;
+	long long A[N];
+	for(int i=0; i<N; i++) cin>>A[i];
+	long long G=A[0];
+	for(int i=1; i<N; i++){
+		G = __gcd(G, A[i]);
+		if(G==1){
+			flag = 1;
+			break;
+		}
+	}
+	if(flag==1) cout<<G<<"\n";
+	else{
+		int div=1;
+		for(long long i=2; i*i<=G; i++){
+			int count =0;
+			while(G%i==0){
+				count++;
+				G/=i;
+			}
+			div = div * (count+1);
+		}
+		if(G!=1) div*=2;
+		cout<<div<<"\n";
+	}
+}

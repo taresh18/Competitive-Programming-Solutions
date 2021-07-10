@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int n, count_1=0, count_0=0, k;
+		cin>>n;
+		int arr[n];
+		for(int i=0; i<n; i++){
+			cin>>arr[i];
+			//cout<<arr[i];
+			if(arr[i]==0) count_0++;
+			else count_1++;
+		}
+		//cout<<endl;
+		if(count_1<=(n/2)){ //remove all 1's
+		    k=n-count_1;
+			cout<<k<<"\n"; 
+			while(k--) cout<<"0"<<" ";
+			cout<<endl;
+		}
+		else{                
+			if(count_1%2==0) k=n-count_0;
+			else k=n-count_0-1;
+			cout<<k<<"\n";
+			while(k--) cout<<"1"<<" ";
+			cout<<endl;
+		}
+	}
+	return 0;
+}

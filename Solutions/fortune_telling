@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+	
+	int n, petal, sum_petals=0, flag=0;
+	cin>>n;
+	vector <int> flowers;
+	
+	for(int i=0; i<n; i++){
+		cin>>petal;
+		flowers.push_back(petal);
+		if(petal%2!=0) flag++;
+	}
+	if(flag==0) cout<<"0";
+	else{
+		int min_odd_petal = flowers[0];
+		for(int i=0; i<n; i++){
+			sum_petals+=flowers[i];
+			if(flowers[i]%2!=0){
+				if(min_odd_petal%2==0){
+					min_odd_petal = flowers[i];
+				}
+				if(flowers[i]<min_odd_petal) min_odd_petal = flowers[i];
+			} 
+	    }
+		if(sum_petals%2==0) cout<<sum_petals - min_odd_petal;
+		else cout<<sum_petals;
+	}
+	
+	return 0;
+}

@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+ll n, k;
+const ll Max = 200005;
+ll arr[Max], freq[Max];
+vector<ll> ans;
+
+void faster(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+}
+
+bool check(ll num_copies){
+	ll req_len=k;
+	for(ll i=0; i<Max; i++){
+		if(freq[i]>=num_copies){
+			req_len = req_len - floor((freq[i]/num_copies));
+			if(req_len<=0) break;
+		}
+	}
+	return req_len<=0;
+}
+
+void Ans(ll num_copies){
+	ll req_len=k;
+	for(ll i=0; i<Max; i++){
+		if(freq[i]>=num_copies){
+			ll f=freq[i]/num_copies;
+			for(ll j=0; j<f; j++){
+				ans.push_back(i);
+				req_len--;
+				if(req_len<=0) break;
+			}
+			if(req_len<=0) break;
+		}
+	}
+}
+
+int main(){
+    faster();
+
+    cin>>n>>k;
+    for(ll i=0; i<n; i++) cin>>arr[i];
+    for(ll i=0; i<n; i++) freq[arr[i]]++;
+    
+    ll hi, lo, mid, max_len=0;
+    lo=1; hi=n;
+    while(lo<=hi){
+    	mid = lo+(hi-lo)/2;
+    	if(check(mid)){
+    		max_len=max(mid, max_len);
+    		lo=mid+1;
+    	}
+    	else hi=mid-1;
+    }
+    //cout<<max_len;
+    
+    Ans(max_len);
+    for(ll i=0; i<ll(ans.size()); i++){
+    	cout<<ans[i]<<" ";
+    }
+    
+    return 0;
+}

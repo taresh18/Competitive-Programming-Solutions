@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+const int MAX=1000003;
+ll larPrime[MAX];
+
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+
+int main(){
+	faster();
+	
+    int n;
+    cin >> n;
+    if (n <= 10 || n > 21)
+    {
+        cout << 0 << endl;
+    }
+    else if (n == 20)
+    {
+        cout << 15 << endl;
+    }
+    else
+    {
+        cout << 4 << endl;
+    }
+    return 0;
+}

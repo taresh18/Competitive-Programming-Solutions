@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+typedef long long ll;
+
+int main(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+	
+	ll N, k;
+	cin>>N>>k;
+	ll req_num, count=0;
+	ll arr[N];
+	for(ll i=0; i<N; i++) cin>>arr[i];
+	sort(arr, arr+N);
+	for(ll i=0; i<N-1; i++){
+		ll lo, hi, mid;
+		req_num = k + arr[i];
+		lo = i+1;
+		hi = N-1;
+		while(lo<=hi){
+			mid = lo + (hi-lo+1)/2;
+			if(arr[mid]==req_num){
+      			count++;
+      			break;
+      			
+      		}
+			else if(arr[mid]>req_num) hi=mid-1;
+			else lo=mid+1;
+		}
+	
+	}
+	cout<<count<<"\n";
+	return 0;
+	
+}

@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+	
+	long long x;
+	int count=0, num;
+	cin>>x;
+	num = x;
+		while(num%2==0){
+			count++;
+			num /= 2;
+	    }
+	
+	
+	if(x==1) cout<<1;
+	//else if(count==0) cout<<0;
+	else{
+		cout<<count*2;
+	}
+	return 0;
+}

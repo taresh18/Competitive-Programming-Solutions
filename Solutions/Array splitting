@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+const ll MAX=1000000007;
+
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+
+int main(){
+	faster();
+	
+	int t;
+	cin>>t;
+	while(t--){
+		ll n, ans;
+		cin>>n;
+		if(n==1) ans=0;
+		else{
+			ll a = floor(sqrt(n));
+			if(n%a==0) ans = a + n/a - 2;
+			else ans = a + ceil(n/a) - 1;
+		}
+		cout<<ans<<"\n";
+	}
+	
+	return 0;
+}

@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    string a="hello";
+    string s;
+    cin>>s;
+    int length=s.length();
+    int j=0, count = 0;
+    for(int i=0; i<length; i++){
+        if(s[i]==a[j]){
+            j++;
+            count++;
+        }
+    }
+    if(count==5)
+        cout<<"YES"<<endl;
+    else
+        cout<<"NO"<<endl;
+
+    return 0;
+}

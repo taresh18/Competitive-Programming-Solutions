@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+vector <bool> isPrime(10000000, true);
+int sPrime[11000000];
+vector <int> primes;
+vector <int> result;
+
+int main(){
+	
+	isPrime[0] = false; isPrime[1] = false;
+	for(int i=2; i*i<5300000; i++){
+		if(isPrime[i]){
+			for(int j=i*i; j<5300000; j+=i) isPrime[j] = false;
+	    }
+	}
+	for(int i=2; i<5300000; i++){
+		if(isPrime[i]) primes.push_back(i);
+	}
+	for(auto itr=primes.begin(); itr!=primes.end(); itr++){
+		int k = *itr;
+		for(int j=k; j<11000000; j+=k){
+			if(isPrime[j/k]) sPrime[j]++;
+		}
+	}
+	for(int i=4; i<11000000; i++){
+		if(sPrime[i]==2){
+			result.push_back(i);
+			if(result.size()==2000000) break;
+		}
+	}
+	int num_test;
+	cin>>num_test;
+	while(num_test--){
+		int k;
+		cin>>k;
+		cout<<result[k-1]<<endl;
+	}
+}

@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+typedef long long ll;
+ll N, M;
+ll trees[1000005];
+
+bool check(ll mid){
+	ll height=0;
+	for(ll i=0; i<N; i++){
+		if((trees[i]-mid)>0) height+=trees[i]-mid;
+	}
+	return height>=M;
+}
+
+int main(){
+	cin>>N>>M;
+	for(ll i=0; i<N; i++) cin>>trees[i];
+	sort(trees, trees+N);
+	ll hi, lo, mid, ans;
+	lo = trees[0];
+	hi = trees[N-1];
+	ans=-1;
+	while(lo<=hi){
+		mid = lo + (hi-lo)/2;
+		if(check(mid)){
+			ans=mid;
+			lo = mid+1;
+		}
+		else hi = mid-1;
+	}
+	cout<<ans;
+	return 0;
+}

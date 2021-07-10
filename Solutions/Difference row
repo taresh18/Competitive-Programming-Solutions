@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+const int MAX=1000003;
+ll larPrime[MAX];
+
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+
+int main(){
+	faster();
+	
+	int n;
+	cin>>n;
+	ll arr[n];
+	for(int i=0; i<n; i++) cin>>arr[i];
+	sort(arr, arr+n);
+	swap(arr[0], arr[n-1]);
+	for(int i=0; i<n; i++) cout<<arr[i]<<" ";
+}

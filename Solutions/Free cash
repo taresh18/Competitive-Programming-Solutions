@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+#include <limits>
+using namespace std;
+typedef unsigned long long int ull;
+typedef long long int ll;
+#define f(i, n) for( ll i=0 ; i<n ; i++ )
+#define fa(i, a, b) for( ll i=a ; i<b ; i++ )
+#define pb push_back
+#define MOD 1000000007
+
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+
+int main(){
+	faster();
+	
+	int n, h, m, prevh, prevm, count=1, ans=1;
+	cin>>n;
+	cin>>h>>m;
+	prevh=h; prevm=m;
+	while(--n){
+		cin>>h>>m;
+		if(h==prevh && m==prevm){
+			count++;
+		}
+		else{
+			if(count>ans) ans=count;
+			count=1;
+			prevh=h;
+			prevm=m;
+		}
+	}
+	if(count>ans) ans=count;
+	cout<<ans;
+}
