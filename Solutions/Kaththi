@@ -1,0 +1,148 @@
+#include<bits/stdc++.h>
+#include <limits>
+using namespace std;
+typedef unsigned long long int ull;
+typedef long long int ll;
+typedef long double ld;
+#define f(i, n) for( ll i=0 ; i<n ; i++ )
+#define fa(i, a, b) for( ll i=a ; i<b ; i++ )
+#define pb push_back
+#define MOD 1000000007
+ 
+//const ll MAX = 10000005;
+//vector <bool> isPrime(MAX+1, true);
+ 
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+ 
+ll expo(ll a, ll b, ll c = MOD) {
+	ll ans = 1;
+	while(b != 0) {
+		if(b % 2 == 1) {
+			ans *= a;
+			ans %= c;
+		}
+		a = a * a;
+		a %= c;
+		b /= 2;
+	}
+	return ans;
+}
+ 
+ll nCr(ll n, ll r) {
+	ll p = 1, k = 1;
+	if(n - r < r)
+		r = n - r;
+	if(r != 0) {
+		while(r) {
+			p *= n;
+			k *= r;
+			ll g = __gcd(p, k);
+			p /= g;
+			k /= g;
+			n--;
+			r--;
+		}
+	}
+	else
+		p = 1;
+	return p;
+}
+ 
+ll fact(ll n) {
+	if(n == 1 || n == 0) {
+		return 1;
+	}
+	return n * fact(n - 1);
+}
+ 
+ll dearrange(ll n) {
+	ll ans = 0;
+	f(i, n + 1) {
+		ans += pow(-1, i) * (fact(n) / fact(i));
+	}
+	return ans;
+}
+ 
+ll prod(ll a, ll b, ll c = MOD) {
+	ll ans = 0;
+	while(b != 0) {
+		if(b % 2 == 1) {
+			ans += a;
+			ans %= c;
+		}
+		a = a + a;
+		a %= c;
+		b /= 2;
+	}
+	return ans;
+}
+
+#define in_range(x, y, r, c) (x >= 0 && x < r && y >= 0 && y < c)
+
+char mat[1000][1000];
+ll dis[1000][1000];
+
+void bfs(ll startX, ll startY, ll r, ll c) {
+	dis[startX][startY] = 0;
+	deque <pair <ll, ll>>q;
+	pair <ll, ll> p;
+	q.push_front(make_pair(startX, startY));
+	while(!q.empty()) {
+		p = q.front();
+		q.pop_front();
+		ll x = p.first;
+		ll y = p.second;
+		ll a[] = {0, -1, 0, 1};
+		ll b[] = {-1, 0, 1, 0};
+		f(i, 4) {
+			ll tempX = x + a[i];
+			ll tempY = y + b[i];
+			if(in_range(tempX, tempY, r, c)) {
+				if(mat[tempX][tempY] == mat[x][y] && dis[tempX][tempY] > dis[x][y]) {
+					q.push_front(make_pair(tempX, tempY));
+					dis[tempX][tempY] = dis[x][y];
+				}
+				else if(mat[tempX][tempY] != mat[x][y]) {
+					if(dis[tempX][tempY] > dis[x][y] + 1) {
+						q.push_back(make_pair(tempX, tempY));
+						dis[tempX][tempY] = dis[x][y] + 1;
+
+					}
+				}
+			}
+		}
+	}
+}
+
+ 
+int main() {
+	faster();
+	
+	int t;
+	cin >> t;
+	while(t--) {
+		ll r, c;
+		cin >> r >> c;
+		f(i, r) {
+			f(j, c) {
+				cin >> mat[i][j];
+		    }
+	    }
+	    
+	    f(i, r) {
+	    	f(j, c) {
+	    		dis[i][j] = MOD;
+	    	}
+	    }
+	    
+	    bfs(0, 0, r, c);
+	    cout << dis[r-1][c-1] << endl;	
+	
+	}
+	
+	
+}

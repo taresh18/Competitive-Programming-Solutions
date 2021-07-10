@@ -1,0 +1,130 @@
+#include<bits/stdc++.h>
+#include <limits>
+using namespace std;
+typedef unsigned long long int ull;
+typedef long long int ll;
+typedef long double ld;
+#define f(i, n) for( ll i=0 ; i<n ; i++ )
+#define fa(i, a, b) for( ll i=a ; i<b ; i++ )
+#define pb push_back
+#define MOD 1000000007
+ 
+//const ll MAX = 10000005;
+//vector <bool> isPrime(MAX+1, true);
+ 
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+ 
+ll expo(ll a, ll b, ll c = MOD) {
+	ll ans = 1;
+	while(b != 0) {
+		if(b % 2 == 1) {
+			ans *= a;
+			ans %= c;
+		}
+		a = a * a;
+		a %= c;
+		b /= 2;
+	}
+	return ans;
+}
+ 
+ll nCr(ll n, ll r) {
+	ll p = 1, k = 1;
+	if(n - r < r)
+		r = n - r;
+	if(r != 0) {
+		while(r) {
+			p *= n;
+			k *= r;
+			ll g = __gcd(p, k);
+			p /= g;
+			k /= g;
+			n--;
+			r--;
+		}
+	}
+	else
+		p = 1;
+	return p;
+}
+ 
+ll fact(ll n) {
+	if(n == 1 || n == 0) {
+		return 1;
+	}
+	return n * fact(n - 1);
+}
+ 
+ll dearrange(ll n) {
+	ll ans = 0;
+	f(i, n + 1) {
+		ans += pow(-1, i) * (fact(n) / fact(i));
+	}
+	return ans;
+}
+ 
+ll prod(ll a, ll b, ll c = MOD) {
+	ll ans = 0;
+	while(b != 0) {
+		if(b % 2 == 1) {
+			ans += a;
+			ans %= c;
+		}
+		a = a + a;
+		a %= c;
+		b /= 2;
+	}
+	return ans;
+}
+ 
+int main() {
+	faster();
+	
+	int t;
+	cin >> t;
+	while(t--) {
+		ll n, m;
+		cin >> n;
+		ll p[n], r[n];
+		f(i, n) {
+			cin >> r[i];
+			p[i] = r[i];
+			if(i > 0)
+				p[i] += p[i-1];
+		}
+		cin >> m;
+		ll q[m], b[m];
+		f(i, m) {
+			cin >> b[i];
+			q[i] = b[i];
+			if(i > 0)
+				q[i] += q[i-1];
+		}
+		ll dp[n+1][m+1];
+		f(i, n+1) {
+			f(j, m+1) {
+				dp[i][j] = -9999999999999999;
+			}
+		}
+		dp[0][0] = 0;
+		ll ans = 0;
+		f(i, n+1) {
+			f(j, m+1) {
+				if(i < n) {
+					dp[i+1][j] = max(dp[i+1][j], dp[i][j] + r[i]);
+				}
+				if(j < m) {
+					dp[i][j+1] = max(dp[i][j+1], dp[i][j] + b[j]);
+				}
+				ans = max(ans, dp[i][j]);
+			}
+		}
+		cout << ans << endl;
+	}
+	
+	
+}

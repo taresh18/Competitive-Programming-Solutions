@@ -1,0 +1,117 @@
+#include<bits/stdc++.h>
+#include <limits>
+using namespace std;
+typedef unsigned long long int ull;
+typedef long long int ll;
+typedef long double ld;
+#define f(i, n) for( ll i=0 ; i<n ; i++ )
+#define fa(i, a, b) for( ll i=a ; i<b ; i++ )
+#define pb push_back
+#define MOD 1000000007
+ 
+//const ll MAX = 10000005;
+//vector <bool> isPrime(MAX+1, true);
+ 
+void faster(){
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+ 
+ll expo(ll a, ll b, ll c = MOD) {
+	ll ans = 1;
+	while(b != 0) {
+		if(b % 2 == 1) {
+			ans *= a;
+			ans %= c;
+		}
+		a = a * a;
+		a %= c;
+		b /= 2;
+	}
+	return ans;
+}
+ 
+ll nCr(ll n, ll r) {
+	ll p = 1, k = 1;
+	if(n - r < r)
+		r = n - r;
+	if(r != 0) {
+		while(r) {
+			p *= n;
+			k *= r;
+			ll g = __gcd(p, k);
+			p /= g;
+			k /= g;
+			n--;
+			r--;
+		}
+	}
+	else
+		p = 1;
+	return p;
+}
+ 
+ll fact(ll n) {
+	if(n == 1 || n == 0) {
+		return 1;
+	}
+	return n * fact(n - 1);
+}
+ 
+ll dearrange(ll n) {
+	ll ans = 0;
+	f(i, n + 1) {
+		ans += pow(-1, i) * (fact(n) / fact(i));
+	}
+	return ans;
+}
+ 
+ll prod(ll a, ll b, ll c = MOD) {
+	ll ans = 0;
+	while(b != 0) {
+		if(b % 2 == 1) {
+			ans += a;
+			ans %= c;
+		}
+		a = a + a;
+		a %= c;
+		b /= 2;
+	}
+	return ans;
+}
+ 
+int main() {
+	faster();
+	
+	string ss;
+	cin >> ss;
+	unordered_map<char, ll> m;
+	string s1="", s2="";
+	f(i,  ss.size()) 
+		m[ss[i]]++;
+	
+	ll odd=0; char oddch;
+	for(auto x:m) {
+		if(x.second % 2 != 0) {
+			odd++;
+			oddch = x.first;
+		}
+	}
+	if(odd>1)
+		cout << "NO SOLUTION";
+	else {
+		for(auto x:m) {
+			string s(x.second/2, x.first);
+			s1 = s1 + s;
+			s2 = s + s2;
+		}
+	}
+	if(odd==1) {
+		cout << s1+oddch+s2;
+	}
+	else
+		cout << s1 + s2;
+		
+	
+}
